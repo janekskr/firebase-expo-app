@@ -2,7 +2,6 @@ import { initializeAuth, getReactNativePersistence  } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyC1fYfyf8jSLtjdW0GbcnwsYFPKEn0RE3s",
   authDomain: "cosmic-casino.firebaseapp.com",

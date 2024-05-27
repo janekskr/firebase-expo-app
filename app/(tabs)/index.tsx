@@ -1,10 +1,10 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, Pressable } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { Text, View } from '@/components';
+import { HelloWave, ParallaxScrollView, Text, View } from '@/components';
+import { useUser } from '@/hooks';
 
 export default function HomeScreen() {
+  const {logout} = useUser()
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -18,8 +18,10 @@ export default function HomeScreen() {
         <Text type="title">Cześć!</Text>
         <HelloWave />
       </View>
-      <Text type="subtitle">Zaloguj się w aplikacji Secured Notes 🔐</Text>
-      
+      <Text>Zaloguj się w aplikacji Secured Notes 🔐</Text>
+      <Pressable onPress={logout}>
+        <Text>Wyjoguj się</Text>
+      </Pressable>
     </ParallaxScrollView>
   );
 }

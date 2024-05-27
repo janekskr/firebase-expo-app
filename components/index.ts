@@ -1,7 +1,14 @@
-import { ThemedText } from "./ThemedText"
-import { ThemedView } from "./ThemedView"
+import {Text, View} from "./Themed"
+import { Collapsible } from "./Collapsible"
+import { ExternalLink } from "./ExternalLink"
+import ParallaxScrollView from "./ParallaxScrollView"
+import { HelloWave } from "./HelloWave"
 
 export {
-    ThemedText as Text,
-    ThemedView as View
+    Text, 
+    View,
+    Collapsible,
+    ExternalLink,
+    ParallaxScrollView,
+    HelloWave
 }

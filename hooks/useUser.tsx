@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   updateProfile,
+  signOut
 } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebaseConfig";
@@ -14,6 +15,7 @@ interface AuthContextType {
   loading: boolean;
   login: (body: LoginCred) => Promise<void>;
   register: (body: RegisterCred) => Promise<void>;
+  logout: () => Promise<void>
 }
 
 type LoginCred = {
@@ -50,6 +52,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
+  const logout = async () => {
+    setUser(null)
+    await signOut(auth)
+  }
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -57,7 +64,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, login, register}}>
+    <AuthContext.Provider value={{ user, setUser, loading, login, register, logout}}>
       {children}
     </AuthContext.Provider>
   );

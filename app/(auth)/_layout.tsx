@@ -1,12 +1,14 @@
-import useUser from "@/hooks/useUser";
 import { Redirect, Stack } from "expo-router";
 
+import {useUser} from "@/hooks";
+
 export default function AuthLayout() {
-  const {user} = useUser()
+  const { user } = useUser();
   if (user) return <Redirect href="(tabs)" />;
-  
+
   return (
-    <Stack initialRouteName="login">
+    <Stack initialRouteName="index">
+      <Stack.Screen name="index" />
       <Stack.Screen name="login" />
       <Stack.Screen name="register" />
     </Stack>
