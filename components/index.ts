@@ -3,6 +3,8 @@ import { Collapsible } from "./Collapsible"
 import { ExternalLink } from "./ExternalLink"
 import ParallaxScrollView from "./ParallaxScrollView"
 import { HelloWave } from "./HelloWave"
+import HeaderLogo from "./HeaderLogo"
+import RedirectButton from "./RedirectButton"
 
 export {
     Text, 
@@ -10,5 +12,7 @@ export {
     Collapsible,
     ExternalLink,
     ParallaxScrollView,
-    HelloWave
+    HelloWave,
+    HeaderLogo,
+    RedirectButton
 }

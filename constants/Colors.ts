@@ -1,7 +1,7 @@
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
-const colors = {
+ const colors = {
   navy: "#04364A",
   blue: '#176B87',
   mint: "#64CCC5",
@@ -26,3 +26,5 @@ export const Colors = {
     tabIconSelected: tintColorDark,
   },
 };
+
+export default colors;

@@ -13,6 +13,7 @@ import { FontAwesome } from "@expo/vector-icons";
 
 import { AuthProvider } from "@/hooks/useUser";
 import { useColorScheme } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -44,11 +45,16 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <AuthProvider>
-        <Stack screenOptions={{ headerShown: false }} initialRouteName="index">
-          <Stack.Screen name="index" />
-          <Stack.Screen name="(auth)" />
-          <Stack.Screen name="(tabs)" />
-        </Stack>
+      <SafeAreaView style={{flex:1}}>
+          <Stack
+            screenOptions={{ headerShown: false }}
+            initialRouteName="index"
+          >
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="(tabs)" />
+          </Stack>
+        </SafeAreaView>
       </AuthProvider>
     </ThemeProvider>
   );

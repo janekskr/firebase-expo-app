@@ -1,18 +1,20 @@
-import { Button, StyleSheet, Pressable } from "react-native";
+import { StyleSheet } from "react-native";
 
-import { useRouter } from "expo-router";
 
-import useUser from "@/hooks/useUser";
-import{Text,View} from "@/components"
+import { RedirectButton, Text, View } from "@/components";
+import { LoginSvg, LogoSvg } from "@/assets";
+import { AntDesign, FontAwesome } from "@expo/vector-icons";
 
 export default function HomeScreen() {
-  const router = useRouter();
   return (
     <View style={styles.container}>
-      <Text type="title">Witaj</Text>
-      <Text type="subtitle">Zaloguj sie lub utwórz konto</Text>
-      <View>
-        
+      <LogoSvg style={{ alignSelf: "flex-start" }} />
+      <View style={{flex: 1, alignItems: 'center', justifyContent: "center"}}>
+      <Text style={{ fontSize: 35, textAlign: "center" }} weight="bold">
+        Dziel się z innnymi swoimi przeżyciami!
+      </Text>
+      <LoginSvg />
+      <RedirectButton type="solid" href="/login">Dalej <FontAwesome name="arrow-right" size={24} color="white" /></RedirectButton>
       </View>
     </View>
   );
@@ -21,7 +23,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    paddingVertical: 20,
+    paddingHorizontal: 30,
   },
 });
