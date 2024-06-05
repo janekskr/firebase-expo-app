@@ -1,29 +1,18 @@
-import { StyleSheet } from "react-native";
-
-
-import { RedirectButton, Text, View } from "@/components";
+import { Container, Button, Text, View } from "@/components";
 import { LoginSvg, LogoSvg } from "@/assets";
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import {  FontAwesome } from "@expo/vector-icons";
 
-export default function HomeScreen() {
+export default function WelcomeScreen() {
   return (
-    <View style={styles.container}>
+    <Container>
       <LogoSvg style={{ alignSelf: "flex-start" }} />
       <View style={{flex: 1, alignItems: 'center', justifyContent: "center"}}>
       <Text style={{ fontSize: 35, textAlign: "center" }} weight="bold">
         Dziel się z innnymi swoimi przeżyciami!
       </Text>
       <LoginSvg />
-      <RedirectButton type="solid" href="/login">Dalej <FontAwesome name="arrow-right" size={24} color="white" /></RedirectButton>
+      <Button type="solid" href="/login"><Text>Dalej</Text> <FontAwesome name="arrow-right" size={24} color="white" /></Button>
       </View>
-    </View>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: 20,
-    paddingHorizontal: 30,
-  },
-});

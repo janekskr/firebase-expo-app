@@ -1,27 +1,29 @@
 import { Redirect, Stack } from "expo-router";
 
-import { useUser } from "@/hooks";
-import { HeaderLogo, RedirectButton } from "@/components";
-import { LogoSvg } from "@/assets";
-import { Pressable } from "react-native";
+import { Button } from "@/components";
 import { FontAwesome6 } from "@expo/vector-icons";
+import { useUser } from "@/providers/FirebaseProvider";
 
 export default function AuthLayout() {
-  const { user } = useUser();
-  if (user) return <Redirect href="(tabs)" />;
+  const user = useUser();
+  
+  if (user) return <Redirect href="(secured)" />;
 
   return (
     <Stack
       initialRouteName="index"
       screenOptions={{
         headerTransparent: true,
-        headerBackVisible: false,
-        headerTitleAlign: "center",
-        headerLeft: () => <RedirectButton href="./" style={{marginLeft: 10}}><FontAwesome6 name="chevron-left" size={30} color="black" /></RedirectButton>,
-        headerTitle: () => <LogoSvg />,
+        headerTintColor: "black",
+        title: "",
+        headerLeft: () => (
+          <Button href="./" style={{marginLeft: 20}}>
+            <FontAwesome6 name="arrow-left" size={24} color="black" />
+          </Button>
+        ),
       }}
     >
-      <Stack.Screen name="index" options={{ headerShown: false}} />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="login" />
       <Stack.Screen name="register" />
     </Stack>

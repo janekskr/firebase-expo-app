@@ -1,23 +1,15 @@
+import colors from "@/constants/Colors";
 import { useThemeColor } from "@/hooks";
+import { Weights } from "@/lib/types";
 import {
   Text as DefaultText,
   View as DefaultView,
   StyleSheet,
 } from "react-native";
 
-export type Weights =
-  | "black"
-  | "bold"
-  | "italic"
-  | "light"
-  | "semibold"
-  | "medium"
-  | "extrabold"
-  | "regular";
-
 export type TextProps = {
   weight?: Weights;
-  type?: "default" | "title" | "subtitle" | "link";
+  type?: "default" | "title" | "subtitle" | "link" | "header" | "initials"
 } & DefaultText["props"];
 export type ViewProps = DefaultView["props"];
 
@@ -27,11 +19,13 @@ export function Text(props: TextProps) {
   return (
     <DefaultText
       style={[
-        { color: theme.text, fontFamily: `poppins_${(type === "title" || type === "subtitle") ? "bold" : weight}` },
+        { color: theme.text, fontFamily: `poppins_${(["title", "subtitle", "header"].includes(type)) ? "bold" : weight}` },
         type === "default" && styles.default,
         type === "title" && styles.title,
         type === "subtitle" && styles.subtitle,
         type === "link" && styles.link,
+        type === "header" && { fontSize: 24 },
+        type === "initials" && {textTransform: "capitalize"},
         style,
       ]}
       {...otherProps}
@@ -57,15 +51,14 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   title: {
-    fontSize: 32,
+    fontSize: 30,
     lineHeight: 40,
   },
   subtitle: {
     fontSize: 20,
+    lineHeight: 28,
   },
   link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: "#0a7ea4",
+    color: colors.blue,
   },
 });

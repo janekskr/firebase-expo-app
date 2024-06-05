@@ -6,6 +6,8 @@ const tintColorDark = '#fff';
   blue: '#176B87',
   mint: "#64CCC5",
   sea: "#DAFFFB",
+  gray: "#d5d9e0",
+  red: "rgb(220 38 38)",
 }
 
 export const Colors = {

@@ -1,25 +1,20 @@
-import { useEffect } from "react";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
 import "react-native-reanimated";
+import "react-native-gesture-handler"
+
+import { useEffect } from "react";
 
 import * as SplashScreen from "expo-splash-screen";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { FontAwesome } from "@expo/vector-icons";
 
-import { AuthProvider } from "@/hooks/useUser";
-import { useColorScheme } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ReactQueryProvider } from "@/providers";
+import FirebaseProvider from "@/providers/FirebaseProvider";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
   const [loaded] = useFonts({
     poppins_regular: require("@/assets/fonts/Poppins-Regular.ttf"),
     poppins_medium: require("@/assets/fonts/Poppins-Medium.ttf"),
@@ -43,19 +38,19 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <AuthProvider>
-      <SafeAreaView style={{flex:1}}>
+    <GestureHandlerRootView>
+      <ReactQueryProvider>
+        <FirebaseProvider>
           <Stack
             screenOptions={{ headerShown: false }}
             initialRouteName="index"
           >
             <Stack.Screen name="index" />
             <Stack.Screen name="(auth)" />
-            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="(secured)" />
           </Stack>
-        </SafeAreaView>
-      </AuthProvider>
-    </ThemeProvider>
+        </FirebaseProvider>
+      </ReactQueryProvider>
+    </GestureHandlerRootView>
   );
 }

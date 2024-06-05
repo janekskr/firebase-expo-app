@@ -1,62 +1,85 @@
-import React, { useState } from "react";
-import { TextInput, Pressable, StyleSheet } from "react-native";
+import { router } from "expo-router";
 
-import { Link, router } from "expo-router";
+import {
+  Input,
+  Button,
+  Text,
+  ParallaxScrollView,
+} from "@/components";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SignInSchema, signInSchema } from "@/lib/types";
+import colors from "@/constants/Colors";
+import { LoginSvg } from "@/assets";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "@/providers/FirebaseProvider";
 
-import {useUser} from "@/hooks";
-import{Text,View} from "@/components"
+export default function LoginScreen() {
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<SignInSchema>({
+    resolver: zodResolver(signInSchema),
+  });
 
-
-export default function login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const { login } = useUser();
-
-  const handleLogin = () => {
-    try {
-      login({ email, password });
-      router.replace("(tabs)")
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const mutation = useMutation({
+    mutationFn: (body: SignInSchema) => login(body),
+    onSuccess: () => router.replace("(tabs)"),
+    onError: () => reset(),
+  })
+  
+  const onSubmit = (body: SignInSchema) => mutation.mutate(body)
 
   return (
-    <View style={styles.container}>
-      <TextInput
+    <ParallaxScrollView
+      style={{ height: 400, marginTop: 50 }}
+      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
+      headerImage={<LoginSvg />}
+    >
+      <Text
+        type="title"
+        style={{ alignSelf: "flex-start", color: colors.navy }}
+      >
+        Zaloguj się
+      </Text>
+      <Input
+        controls={{
+          control,
+          errors,
+        }}
+        name="email"
         placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        style={styles.input}
+        inputMode="email"
+        icon="at-sign"
+        style={{ width: "100%" }}
       />
-      <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
+      <Input
+        controls={{
+          control,
+          errors,
+        }}
+        name="password"
+        icon="lock"
+        placeholder="Hasło"
         secureTextEntry
-        style={styles.input}
+        style={{ width: "100%" }}
       />
-      <Pressable onPress={handleLogin} style={{ backgroundColor: "white" }}>
-        <Text>Zaloguj się</Text>
-      </Pressable>
-      <Link href="/(auth)/register">Don't have an account? Register</Link>
-    </View>
+
+      <Button
+        type="solid"
+        onPress={handleSubmit(onSubmit)}
+        disabled={isSubmitting}
+      >
+        Zaloguj się
+      </Button>
+      <Button href="/(auth)/register">
+        <Text>Nie posiadasz konta?</Text>
+        <Text weight="bold" type="link">
+          Zarejestruj się
+        </Text>
+      </Button>
+    </ParallaxScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 16,
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    color: "white",
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingLeft: 8,
-  },
-});
