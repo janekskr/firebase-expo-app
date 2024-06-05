@@ -108,7 +108,7 @@ export default function RegisterScreen() {
               />
             )}
           />
-          <Button onPress={() => {}}>
+          <Button onPress={() => {}} style={{flexDirection: "row"}}>
             <Text>Akceptuję{" "}</Text>
             <Text
               weight="bold"
@@ -130,7 +130,7 @@ export default function RegisterScreen() {
         )}
       </View>
       <Button type="solid" onPress={handleSubmit(onSubmit)} disabled={isSubmitting}>
-        <Text>Zarejestruj się</Text>
+        Zarejestruj się
       </Button>
     </ParallaxScrollView>
   );

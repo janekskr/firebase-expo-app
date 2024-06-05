@@ -74,9 +74,9 @@ export default function LoginScreen() {
       >
         Zaloguj się
       </Button>
-      <Button href="/(auth)/register">
-        <Text>Nie posiadasz konta?</Text>
-        <Text weight="bold" type="link">
+    <Button href="/(auth)/register" style={{alignItems: 'center'}}>
+        <Text  style={{fontSize: 16}}>Nie posiadasz konta?</Text>
+        <Text weight="bold" type="link" style={{fontSize: 16}}>
           Zarejestruj się
         </Text>
       </Button>

@@ -24,7 +24,7 @@ interface InputProps extends TextInputProps {
     placeholderColor?: string
 } 
 
-const Input: FC<InputProps> = ({ weight="regular",style, placeholder, inputColor,controls, placeholderColor, inputStyle, containerStyle, name, iconStyle, icon, ...rest }) => {
+const Input: FC<InputProps> = ({ weight="medium",style, placeholder, inputColor,controls, placeholderColor, inputStyle, containerStyle, name, iconStyle, icon, ...rest }) => {
     const error = controls?.errors[name]
     const [errorText, setErrorText] = useState(error)
     return (

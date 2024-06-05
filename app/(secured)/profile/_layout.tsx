@@ -41,6 +41,32 @@ export default function ProfileLayout() {
             </Text>
           ),
         }}/>
+        <Stack.Screen name="photo" options={{
+          headerTitle: () => (
+            <Text
+              type="header"
+              style={{
+                backgroundColor: "white",
+                marginTop: 4,
+              }}
+            >
+              Zmień zdjęcie
+            </Text>
+          ),
+        }}/>
+        <Stack.Screen name="username" options={{
+          headerTitle: () => (
+            <Text
+              type="header"
+              style={{
+                backgroundColor: "white",
+                marginTop: 4,
+              }}
+            >
+              Zmień nazwę
+            </Text>
+          ),
+        }}/>
     </Stack>
   );
 }

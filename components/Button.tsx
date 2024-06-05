@@ -2,7 +2,7 @@ import colors from "@/constants/Colors";
 import { Text } from "./Themed";
 import { router } from "expo-router";
 import React from "react";
-import { Pressable, PressableProps, TextStyle } from "react-native";
+import { Pressable, PressableProps, TextStyle, ViewStyle } from "react-native";
 
 // Define the types
 type OnPressProps = {
@@ -48,22 +48,26 @@ export default function Button({
           justifyContent: "center",
           paddingHorizontal: 15,
           paddingVertical: 13,
-          borderRadius: 15
+          borderRadius: 15,
         },
-        pressed && { opacity: 0.8 }
+        pressed && { opacity: 0.7, ransform: [{ scale: 0.99 }] },
       ]}
       {...props}
     >
-{type === "solid" ?       <Text
-        style={[
-          { width: "100%", textAlign: "center" },
-          type === "solid" && { color: "white", marginTop: 2 },
-          textStyle,
-        ]}
-        type={type === "solid" ? "subtitle" : "default"}
-      >
-        {children}
-      </Text>: children}
+      {type === "solid" ? (
+        <Text
+          style={[
+            { width: "100%", textAlign: "center" },
+            type === "solid" && { color: "white", marginTop: 2 },
+            textStyle,
+          ]}
+          type={type === "solid" ? "subtitle" : "default"}
+        >
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
     </Pressable>
   );
 }

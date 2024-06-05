@@ -41,14 +41,12 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
   };
   
   export const likePost = async (postId: string, userId: string): Promise<void> => {
-    const likeRef = collection(db, "likes");
-    const like: Like = {
-      id: likeRef.id,
+    const like: Omit<Like, "id"> = {
       postId,
       userId,
       timestamp: Timestamp.now(),
     };
-    await addDoc(likeRef, like);
+    await addDoc(collection(db, "likes"), like);
   };
   
   export const unlikePost = async (postId: string, userId: string): Promise<void> => {
