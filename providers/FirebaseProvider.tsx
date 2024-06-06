@@ -63,9 +63,15 @@ export async function resetPassword(email: string) {
   await sendPasswordResetEmail(auth, email);
 }
 
-export async function updateUsername(username: string) {
+export async function updateUsername(displayName: string) {
   if (auth.currentUser) {
-    await updateProfile(auth.currentUser, { displayName: username });
+    await updateProfile(auth.currentUser, { displayName });
+  }
+}
+
+export async function updateProfilePicture(photoURL: string) {
+  if (auth.currentUser) {
+    await updateProfile(auth.currentUser, {photoURL});
   }
 }
 

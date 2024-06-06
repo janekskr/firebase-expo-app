@@ -1,4 +1,3 @@
-// shared/firebasePostFunctions.ts
 import {
     addDoc,
     collection,
@@ -13,10 +12,11 @@ import {
     DocumentData,
     updateDoc,
     doc,
+    getDoc,
   } from "firebase/firestore";
   import { db, storage } from "@/lib/firebaseConfig";
   import { Post, Like } from "@/lib/types";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage";
   
   export const fetchPosts = async (): Promise<Post[]> => {
     const postsQuery = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -47,6 +47,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
       timestamp: Timestamp.now(),
     };
     await addDoc(collection(db, "likes"), like);
+    
   };
   
   export const unlikePost = async (postId: string, userId: string): Promise<void> => {
@@ -79,7 +80,36 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
   };
 
   export const deletePost = async (id: string): Promise<void> => {
-    await deleteDoc(doc(db, "posts", id));
+    const postRef = doc(db, "posts", id)
+
+    const postDoc = await getDoc(postRef)
+
+    if (!postDoc.exists()) {
+      console.error("Post not found");
+      return;
+    }
+
+    const imageUrls: string[] = postDoc.data().imageUrls
+
+    const deleteImagePromises = imageUrls.map(async (url) => {
+      const imageRef = ref(storage, url);
+      await deleteObject(imageRef)
+    });
+  
+    await Promise.all(deleteImagePromises);
+
+    await deleteDoc(postRef);
+
+    const likeRef = query(
+      collection(db, "likes"),
+      where("postId", "==", id),
+    );
+
+    const snapshots = (await getDocs(likeRef)).docs;
+    for (const doc of snapshots) {
+      await deleteDoc(doc.ref);
+    }
+    
   };
   
   const uploadImage = async (uri: string, path: string): Promise<string> => {

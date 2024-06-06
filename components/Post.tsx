@@ -128,7 +128,7 @@ const Post: React.FC<PostProps> = ({
         <Button onPress={handleLikeButtonPress}>
           <AntDesign name={liked ? "heart" : "hearto"} size={24} color={liked ? colors.red: "black"} />
         </Button>
-        <Text>Polubione przez: {likes.length}</Text>
+        <Text>{likes.length} Polubień</Text>
       </View>
     </ColoredView>
   );

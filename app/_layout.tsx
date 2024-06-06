@@ -11,6 +11,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { ReactQueryProvider } from "@/providers";
 import FirebaseProvider from "@/providers/FirebaseProvider";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { StatusBar } from "expo-status-bar";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -39,6 +40,7 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView>
+      <StatusBar style="dark"/>
       <ReactQueryProvider>
         <FirebaseProvider>
           <Stack
