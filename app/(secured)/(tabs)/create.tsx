@@ -106,7 +106,7 @@ const CreatePost: React.FC = () => {
           placeholder="Opis"
           name="description"
           multiline
-          numberOfLines={10}
+          numberOfLines={8}
         />
         <ImagePicker
           setState={setImages}

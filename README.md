@@ -1,50 +1,92 @@
-# Welcome to your Expo app 👋
+# Baldini - An Expo Firebase Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to Baldini, a mobile application built with Expo and Firebase that allows you to post and share moments of your life. Whether it's a picture, a thought, or an update, Baldini makes it easy to stay connected with friends and family.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **User Authentication**: Secure login and registration using Firebase Authentication.
+- **Post Creation**: Share text and images with your followers.
+- **Real-time Updates**: See new posts and updates instantly with real-time data synchronization.
+- **Profile Management**: Customize your profile with a picture.
+- **Like and Comment**: Engage with posts by liking.
 
-   ```bash
-   npm install
-   ```
+## Screenshots
 
-2. Start the app
+![mockup image](https://github.com/janekskr/firebase-expo-app/blob/main/assets/images/mockup.png)
 
-   ```bash
+## Installation
+
+To get started with Baldini, follow these steps:
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/janekskr/firebase-expo-app.git
+    cd firebase-expo-app
+    ```
+
+2. **Install dependencies**:
+    ```bash
+    npm install
+    ```
+
+3. **Set up Firebase**:
+   - Go to the [Firebase Console](https://console.firebase.google.com/).
+   - Create a new project.
+   - Enable Authentication and Firestore Database.
+   - Copy your Firebase config and add it to the project.
+   - Create a `.env` file in the root directory:
+     ```env
+     EXPO_PUBLIC_FIREBASE_CONFIG='{
+       "apiKey": "YOUR_API_KEY",
+       "authDomain": "YOUR_AUTH_DOMAIN",
+       "projectId": "YOUR_PROJECT_ID",
+       "storageBucket": "YOUR_STORAGE_BUCKET",
+       "messagingSenderId": "YOUR_MESSAGING_SENDER_ID",
+       "appId": "YOUR_APP_ID",
+       "measurementId": "YOUR_MEASUREMENT_ID"
+     }'
+     ```
+
+4. **Run the app**:
+    ```bash
     npx expo start
-   ```
+    ```
+    This will start the Expo development server. Use the Expo Go app on your phone to scan the QR code and run the app.
 
-In the output, you'll find options to open the app in a
+## Usage
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. **Register/Login**: Create a new account or log in with your existing account.
+2. **Create a Post**: Tap the "+" button to create a new post. Add a picture or write something interesting.
+3. **Browse Feed**: See the latest updates from people you follow.
+4. **Engage**: Like posts to engage with your community.
+5. **Profile**: View and edit your profile.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Contributing
 
-## Get a fresh project
+We welcome contributions to Baldni! To contribute, follow these steps:
 
-When you're ready, run:
+1. **Fork the repository**.
+2. **Create a new branch**:
+    ```bash
+    git checkout -b feature-name
+    ```
+3. **Make your changes**.
+4. **Commit your changes**:
+    ```bash
+    git commit -m "Description of changes"
+    ```
+5. **Push to the branch**:
+    ```bash
+    git push origin feature-name
+    ```
+6. **Create a pull request**.
 
-```bash
-npm run reset-project
-```
+## License
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Learn more
+## Contact
 
-To learn more about developing your project with Expo, look at the following resources:
+If you have any questions, feel free to reach out:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **GitHub**: [janekskr](https://github.com/janekskr)

@@ -11,7 +11,7 @@ export default function DirectionsSvg({ width = 400, ...props }: SvgProps) {
       viewBox="0 0 3710 3710"
       {...props}
     >
-      <Path d="M0 0H3710V3710H0z" fill="#fff" />
+      <Path d="M0 0H3710V3710H0z" fill="transparent" />
       <LinearGradient
         id="a"
         gradientUnits="userSpaceOnUse"

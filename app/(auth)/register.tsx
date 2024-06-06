@@ -35,13 +35,12 @@ export default function RegisterScreen() {
 
   return (
     <ParallaxScrollView
-      style={{ height: 400, marginTop: 50 }}
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
+      style={{ height: 400, marginTop: 15 }}
       headerImage={<DirectionsSvg />}
     >
       <Text
         type="title"
-        style={{ alignSelf: "flex-start", color: colors.navy, marginTop: -20 }}
+        style={{ alignSelf: "flex-start", color: colors.navy, marginTop: -25 }}
       >
         Zarejestruj się
       </Text>

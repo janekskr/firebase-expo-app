@@ -12,9 +12,10 @@ export default function ProfilePicture({
   src,
   style,
 }: ProfilePictureProps) {
+
   return (
     <Image
-      source={src ?? "https://avatar.iran.liara.run/public/boy?username=Ash"}
+      source={src ?? require("@/assets/images/icons/avatar.avif")}
       style={[
         {
           width,
@@ -24,7 +25,7 @@ export default function ProfilePicture({
         style as any,
       ]}
       contentFit="cover"
-      cachePolicy="none"
+      cachePolicy={src ? "none": "disk"}
     />
   );
 }

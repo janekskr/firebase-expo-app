@@ -9,7 +9,7 @@ export default function WelcomeScreen() {
     <Container style={{paddingTop: top + 20}}>
       <LogoSvg style={{ alignSelf: "flex-start" }} />
       <View style={{flex: 1, alignItems: 'center', justifyContent: "center"}}>
-      <Text style={{ fontSize: 35, textAlign: "center" }} weight="bold">
+      <Text style={{ fontSize: 35, textAlign: "center", marginTop: 20 }} weight="bold">
         Dziel się z innnymi swoimi przeżyciami!
       </Text>
       <LoginSvg />
